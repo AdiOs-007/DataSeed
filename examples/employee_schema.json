@@ -1,0 +1,183 @@
+{
+  "dataset_name": "employees",
+  "description": "Synthetic employee records: salary depends on department and correlates with experience, bonus is derived from salary, manager_rating is missing more often in Sales (missing-at-random).",
+  "generation": {
+    "n_rows": 2000,
+    "seed": 7
+  },
+  "columns": [
+    {
+      "name": "employee_id",
+      "type": "identifier",
+      "prefix": "EMP-",
+      "width": 5
+    },
+    {
+      "name": "full_name",
+      "type": "string",
+      "text_kind": "name"
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "text_kind": "email",
+      "domain": "example.com",
+      "unique": true
+    },
+    {
+      "name": "department",
+      "type": "categorical",
+      "categories": [
+        "Engineering",
+        "Sales",
+        "HR",
+        "Finance",
+        "Marketing"
+      ],
+      "probabilities": [
+        0.4,
+        0.25,
+        0.08,
+        0.12,
+        0.15
+      ]
+    },
+    {
+      "name": "job_level",
+      "type": "categorical",
+      "categories": [
+        "Junior",
+        "Mid",
+        "Senior",
+        "Lead"
+      ],
+      "conditional_on": "department",
+      "conditional_probabilities": {
+        "Engineering": {
+          "Junior": 0.3,
+          "Mid": 0.35,
+          "Senior": 0.25,
+          "Lead": 0.1
+        },
+        "Sales": {
+          "Junior": 0.5,
+          "Mid": 0.3,
+          "Senior": 0.15,
+          "Lead": 0.05
+        },
+        "HR": {
+          "Junior": 0.4,
+          "Mid": 0.4,
+          "Senior": 0.15,
+          "Lead": 0.05
+        },
+        "Finance": {
+          "Junior": 0.3,
+          "Mid": 0.4,
+          "Senior": 0.2,
+          "Lead": 0.1
+        },
+        "Marketing": {
+          "Junior": 0.4,
+          "Mid": 0.35,
+          "Senior": 0.2,
+          "Lead": 0.05
+        }
+      }
+    },
+    {
+      "name": "years_experience",
+      "type": "integer",
+      "min": 0,
+      "max": 35,
+      "distribution": "normal",
+      "mean": 8,
+      "std": 6
+    },
+    {
+      "name": "salary",
+      "type": "float",
+      "min": 20000,
+      "max": 250000,
+      "distribution": "lognormal",
+      "mean": 70000,
+      "std": 30000,
+      "decimals": 0,
+      "conditional_on": "department",
+      "conditional_params": {
+        "Engineering": {
+          "mean": 85000,
+          "std": 30000
+        },
+        "Sales": {
+          "mean": 60000,
+          "std": 22000
+        },
+        "HR": {
+          "mean": 52000,
+          "std": 15000
+        }
+      }
+    },
+    {
+      "name": "bonus",
+      "type": "float",
+      "expression": "round(salary * 0.1, 2)",
+      "decimals": 2
+    },
+    {
+      "name": "hire_date",
+      "type": "date",
+      "min": "2005-01-01",
+      "max": "2025-06-30",
+      "date_format": "%d/%m/%Y"
+    },
+    {
+      "name": "last_login",
+      "type": "datetime",
+      "min": "2025-01-01 00:00:00",
+      "max": "2025-06-30 23:59:59"
+    },
+    {
+      "name": "is_remote",
+      "type": "boolean",
+      "probability": 0.3
+    },
+    {
+      "name": "manager_rating",
+      "type": "float",
+      "min": 1,
+      "max": 5,
+      "mean": 3.6,
+      "std": 0.7,
+      "distribution": "normal",
+      "decimals": 1,
+      "missing_rate": 0.05,
+      "missing_model": {
+        "type": "group",
+        "column": "department",
+        "rates": {
+          "Sales": 0.2,
+          "Engineering": 0.02
+        },
+        "default": 0.05
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "type": "correlation",
+      "columns": [
+        "years_experience",
+        "salary"
+      ],
+      "value": 0.65
+    }
+  ],
+  "constraints": [
+    {
+      "type": "expression",
+      "expression": "salary >= 25000"
+    }
+  ]
+}

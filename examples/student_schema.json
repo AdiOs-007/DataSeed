@@ -1,0 +1,25 @@
+{
+  "dataset_name": "students",
+  "description": "Synthetic student records. marks and attendance are positively correlated; pass_status is derived from marks.",
+  "generation": {"n_rows": 5000, "seed": 42},
+  "columns": [
+    {"name": "student_id", "type": "identifier", "prefix": "STU-", "width": 6, "unique": true},
+    {"name": "age", "type": "integer", "min": 18, "max": 25},
+    {"name": "gender", "type": "categorical", "categories": ["Male", "Female", "Other"], "probabilities": [0.5, 0.47, 0.03]},
+    {"name": "department", "type": "categorical", "categories": ["Computer Science", "Electronics", "Mechanical", "Civil"],
+     "probabilities": [0.4, 0.25, 0.2, 0.15]},
+    {"name": "attendance_percentage", "type": "float", "min": 0, "max": 100, "distribution": "normal",
+     "mean": 75, "std": 14, "decimals": 1, "missing_rate": 0.02},
+    {"name": "marks", "type": "float", "min": 0, "max": 100, "distribution": "normal", "mean": 62, "std": 17, "decimals": 1},
+    {"name": "pass_status", "type": "categorical", "categories": ["Pass", "Fail"],
+     "expression": "where(marks >= 40, 'Pass', 'Fail')"},
+    {"name": "enrollment_date", "type": "date", "min": "2021-07-01", "max": "2024-08-31"}
+  ],
+  "relationships": [
+    {"type": "correlation", "columns": ["attendance_percentage", "marks"], "value": 0.55}
+  ],
+  "constraints": [
+    {"type": "expression", "expression": "not (marks >= 90 and attendance_percentage < 40)",
+     "description": "very high marks with very low attendance is considered implausible"}
+  ]
+}

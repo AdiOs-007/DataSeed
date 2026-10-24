@@ -1,0 +1,41 @@
+student_id,age,gender,department,attendance_percentage,marks,pass_status
+STU-0001,20,Male,Computer Science,100.0,85.3,Pass
+STU-0002,24,Male,Civil,40.8,37.9,Fail
+STU-0003,22,Male,Computer Science,79.4,56.7,Pass
+STU-0004,25,Male,Computer Science,66.6,36.3,Fail
+STU-0005,25,Female,Computer Science,68.1,53.1,Pass
+STU-0006,23,Male,Computer Science,71.2,54.7,Pass
+STU-0007,18,Male,Computer Science,,54.0,Pass
+STU-0008,19,Female,Electronics,71.0,65.8,Pass
+STU-0009,23,Male,Civil,62.8,50.6,Pass
+STU-0010,22,Male,Computer Science,100.0,97.0,Pass
+STU-0011,25,Male,Electronics,76.9,57.8,Pass
+STU-0012,23,Male,Mechanical,69.4,40.9,Pass
+STU-0013,24,Male,Civil,70.3,62.9,Pass
+STU-0014,18,Male,Civil,65.3,58.3,Pass
+STU-0015,20,Female,Computer Science,60.3,42.6,Pass
+STU-0016,23,Female,Electronics,68.9,42.5,Pass
+STU-0017,23,Female,Civil,80.3,66.8,Pass
+STU-0018,20,Female,Computer Science,70.9,20.3,Fail
+STU-0019,19,Female,Electronics,86.5,78.9,Pass
+STU-0020,22,Female,Computer Science,71.4,62.5,Pass
+STU-0021,18,Female,Mechanical,74.3,35.3,Fail
+STU-0022,23,Female,Civil,94.1,76.9,Pass
+STU-0023,24,Male,Electronics,81.1,50.9,Pass
+STU-0024,23,Male,Computer Science,,62.7,Pass
+STU-0025,18,Male,Computer Science,71.6,27.4,Fail
+STU-0026,22,Male,Electronics,81.0,51.5,Pass
+STU-0027,20,Female,Mechanical,99.2,90.6,Pass
+STU-0028,22,Male,Computer Science,70.5,71.0,Pass
+STU-0029,23,Female,Mechanical,70.8,24.9,Fail
+STU-0030,19,Female,Electronics,87.0,62.8,Pass
+STU-0031,18,Male,Computer Science,62.5,52.2,Pass
+STU-0032,21,Male,Mechanical,70.2,46.1,Pass
+STU-0033,22,Male,Computer Science,85.5,90.6,Pass
+STU-0034,19,Female,Computer Science,81.5,48.1,Pass
+STU-0035,25,Male,Mechanical,75.2,64.0,Pass
+STU-0036,21,Male,Electronics,82.7,51.2,Pass
+STU-0037,25,Male,Mechanical,37.2,44.6,Pass
+STU-0038,22,Male,Electronics,87.3,69.6,Pass
+STU-0039,23,Female,Computer Science,61.5,41.6,Pass
+STU-0040,24,Male,Electronics,52.3,14.4,Fail
