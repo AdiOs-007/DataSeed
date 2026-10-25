@@ -14,6 +14,11 @@ from dataseed.io_utils import load_sample
 from dataseed.reporting import format_parse_result
 from dataseed import ui_helpers as ui
 
+try:  # purely decorative layer; the app must work without it
+    from dataseed import visual_theme
+except Exception:  # pragma: no cover
+    visual_theme = None
+
 MODES = ["Sample file (CSV / Excel)", "Schema (JSON)", "Plain English"]
 
 
@@ -229,9 +234,16 @@ def render() -> None:
     st.title("🌱 DataSeed - Tiny Input, Massive Dataset")
     st.caption(f"v{__version__} - runs locally; nothing is uploaded anywhere. Synthetic data is generated from the model "
                "DataSeed builds - it is not guaranteed to be realistic, anonymous or private.")
+    if visual_theme is not None:
+        visual_theme.hero(__version__)
     mode = st.sidebar.radio("Choose an input method", MODES)
     st.sidebar.markdown("**Tips**\n- Samples under 30 rows give rough estimates.\n- Always review the schema before generating.\n"
                         "- The same seed always reproduces the same dataset.")
+    if visual_theme is not None:
+        modes = list(visual_theme.FX_MODES)
+        fx = st.sidebar.selectbox("Background effects", modes, index=modes.index(visual_theme.default_mode()),
+                                  help="Full: cursor + click glow. Calm: slow, no cursor effect. Off: plain interface.")
+        visual_theme.apply(fx)
     st.header("Provide the input")
     {0: _input_sample, 1: _input_schema, 2: _input_text}[MODES.index(mode)]()
     if mode == MODES[0]:

@@ -1,0 +1,8 @@
+# Used when Streamlit is started from the project root (e.g. `streamlit run src/dataseed/streamlit_app.py`).
+# `python -m dataseed ui` passes the same colours as command-line flags, so it works from any folder.
+[theme]
+base = "dark"
+primaryColor = "#6effc8"
+backgroundColor = "#05080f"
+secondaryBackgroundColor = "#0a1220"
+textColor = "#d8e6ee"

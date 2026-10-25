@@ -182,7 +182,9 @@ def _cmd_ui(a) -> int:
                             "  python -m pip install -e \".[ui]\"\nthen retry: python -m dataseed ui")
     app = Path(__file__).with_name("streamlit_app.py")
     print(f"Starting DataSeed UI on http://localhost:{a.port} (Ctrl+C to stop)")
-    return subprocess.call([sys.executable, "-m", "streamlit", "run", str(app), "--server.port", str(a.port)])
+    theme = ["--theme.base", "dark", "--theme.primaryColor", "#6effc8", "--theme.backgroundColor", "#05080f",
+             "--theme.secondaryBackgroundColor", "#0a1220", "--theme.textColor", "#d8e6ee"]
+    return subprocess.call([sys.executable, "-m", "streamlit", "run", str(app), "--server.port", str(a.port), *theme])
 
 
 def main(argv: list[str] | None = None) -> int:
